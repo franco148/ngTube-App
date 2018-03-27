@@ -27,6 +27,19 @@ export class HomeComponent implements OnInit {
   whatVideo(video:any) {
     this.selectedVideo = video;
     $('#youtubeModal').modal();
+    $('#youtubeModal').on('hide.bs.modal',args=> {
+      this.selectedVideo=null;
+    })
+  }
+
+  killVideoPlayback() {
+    this.selectedVideo = null;
+    $('#youtubeModal').modal('hide');
+  }
+
+  loadNextVideosPage() {
+    this._youtubeService.getVideos()
+        .subscribe( videos => this.videos.push( ...videos ));
   }
 
 }

@@ -19,6 +19,11 @@
 
   </div>
 
+  <button (click)="loadNextVideosPage()"
+          type="button" class="btn btn-outline-primary btn-block">
+    See more videos...
+  </button>
+
 </div>
 
 <!-- Modal -->
@@ -32,10 +37,11 @@
         </button> -->
       </div>
       <div class="modal-body">
-        <iframe width="100%" height="300" src="https://www.youtube.com/embed/{{selectedVideo.resourceId.videoId}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe width="100%" height="300" [src]="selectedVideo.resourceId.videoId | youtubeVideo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary"
+                (click)="killVideoPlayback()">Close</button>
       </div>
     </div>
   </div>
