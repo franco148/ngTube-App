@@ -1,5 +1,42 @@
 <div class="container main-container">
   <h1>Youtube Channel</h1>
   <hr>
-  
+
+  <div *ngIf="videos.length > 0" class="card-columns">
+
+    <div class="card animated fadeIn fast" *ngFor="let video of videos">
+      <img class="card-img-top img-fluid" [src]="video.thumbnails.high.url" [alt]="video.title">
+      <div class="card-block">
+        <h5 class="card-title">{{ video.title }}</h5>
+        <p class="card-text">{{ video.description }}</p>
+        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+        <button (click)="whatVideo(video)"
+                type="button" class="btn btn-outline-primary btn-block">
+          Watch Video
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" *ngIf="selectedVideo">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ selectedVideo.title }}</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="300" src="https://www.youtube.com/embed/{{selectedVideo.resourceId.videoId}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

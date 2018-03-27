@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubeService } from '../../services/youtube.service';
 
+declare var $:any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,6 +10,7 @@ import { YoutubeService } from '../../services/youtube.service';
 export class HomeComponent implements OnInit {
 
   videos:any[] = [];
+  selectedVideo:any;
 
   constructor(public _youtubeService: YoutubeService) {
 
@@ -20,6 +22,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  whatVideo(video:any) {
+    this.selectedVideo = video;
+    $('#youtubeModal').modal();
   }
 
 }
